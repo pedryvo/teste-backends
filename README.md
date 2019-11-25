@@ -23,7 +23,7 @@ Para começar o desafio:
 *   Deve haver exatamente 1 proponente principal por proposta
 *   Todos os proponentes devem ser maiores de 18 anos
 *   Dever haver no mínimo 1 garantia de imóvel por proposta
-*   O valor das garantias deve ser maior ou igual ao dobro do valor do empréstimo
+*   A soma do valor das garantias deve ser maior ou igual ao dobro do valor do empréstimo
 *   As garantias de imóvel dos estados PR, SC e RS não são aceitas
 *   A renda do proponente principal deve ser pelo menos:
     *   4 vezes o valor da parcela do empréstimo, se a idade dele for entre 18 e 24 anos
@@ -34,37 +34,37 @@ Para começar o desafio:
 *   Em caso de eventos atrasados, considere sempre o evento mais novo
     *   Por exemplo, ao receber dois eventos de atualização com IDs diferentes, porém o último evento tem um timestamp mais antigo do que o primeiro, descarte o evento mais antigo
 
-## Formato de input 
+## Formato de input
 
 A primeira linha contém o número de eventos a serem processados. Da segunda em diante, os dados do evento separados por vírgula.
 
 Cada evento tem seu formato. Veja abaixo:
 
-* **proposal.created**: enviado quando uma proposta é criada  
+* **proposal.created**: enviado quando uma proposta é criada
 `event_id,event_schema,event_action,event_timestamp,proposal_id,proposal_loan_value,proposal_number_of_monthly_installments`
 
-* **proposal.updated**: enviado quando uma proposta é atualizada  
+* **proposal.updated**: enviado quando uma proposta é atualizada
 `event_id,event_schema,event_action,event_timestamp,proposal_id,proposal_loan_value,proposal_number_of_monthly_installments`
 
-* **proposal.deleted**: enviado quando uma proposta é excluída  
+* **proposal.deleted**: enviado quando uma proposta é excluída
 `event_id,event_schema,event_action,event_timestamp,proposal_id`
 
-* **warranty.added**: enviado quando um imóvel de garantia é adicionado à uma proposta  
+* **warranty.added**: enviado quando um imóvel de garantia é adicionado à uma proposta
 `event_id,event_schema,event_action,event_timestamp,proposal_id,warranty_id,warranty_value,warranty_province`
 
-* **warranty.updated**: enviado quando um imóvel de garantia é atualizado  
+* **warranty.updated**: enviado quando um imóvel de garantia é atualizado
 `event_id,event_schema,event_action,event_timestamp,proposal_id,warranty_id,warranty_value,warranty_province`
 
-* **warranty.removed**: enviado quando um imóvel de garantia é removido de uma proposta  
+* **warranty.removed**: enviado quando um imóvel de garantia é removido de uma proposta
 `event_id,event_schema,event_action,event_timestamp,proposal_id,warranty_id`
 
-* **proponent.added**: enviado quando um proponente é adicionado à uma proposta  
+* **proponent.added**: enviado quando um proponente é adicionado à uma proposta
 `event_id,event_schema,event_action,event_timestamp,proposal_id,proponent_id,proponent_name,proponent_age,proponent_monthly_income,proponent_is_main`
 
-* **proponent.updated**: enviado quando um proponente é atualizado  
+* **proponent.updated**: enviado quando um proponente é atualizado
 `event_id,event_schema,event_action,event_timestamp,proposal_id,proponent_id,proponent_name,proponent_age,proponent_monthly_income,proponent_is_main`
 
-* **proponent.removed**: enviado quando um proponente é removido de uma proposta  
+* **proponent.removed**: enviado quando um proponente é removido de uma proposta
 ` event_id,event_schema,event_action,event_timestamp,proposal_id,proponent_id`
 
 ## Casos de exemplo
