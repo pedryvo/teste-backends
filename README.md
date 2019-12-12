@@ -15,6 +15,8 @@ Para começar o desafio:
 3. Escolha sua linguagem de preferência e edite o arquivo respectivo. Por exemplo, se você quer resolver em Ruby, o arquivo é `./ruby/solution.rb`; e se for Java `./java/solution.java`
 4. Para testar sua solução, utilize os inputs e outputs definidos em `./test/input/*.txt` e `./test/output/*.txt`
 
+⚠️ Lembre-se de manter seu código limpo (temos um exemplar do Clean Code no escritório), seguindo as convenções da comunidade da linguagem de você escolher e, é claro, de escrever testes.
+
 ## Regras
 
 *   O valor do empréstimo deve estar entre R$ 30.000,00 e R$ 3.000.000,00
