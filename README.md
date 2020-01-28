@@ -92,7 +92,7 @@ f72d0829-beac-45bb-b235-7fa16b117c43,warranty,added,2019-11-11T13:27:22Z,af6e600
 Output do exemplo
 
 ```
-c2d06c4f-e1dc-4b2a-af61-ba15bc6d8610,814695b6-f44e-491b-9921-af806f5bb25c
+bd6abe95-7c44-41a4-92d0-edf4978c9f4e,af6e600b-2622-40d1-89ad-d3e5b6cc2fdf
 ```
 
 Explicação: como os dados das duas propostas eram válidos, o output contém as duas propostas.
@@ -116,7 +116,7 @@ f72d0829-beac-45bb-b235-7fa16b117c43,warranty,added,2019-11-11T13:27:22Z,af6e600
 Output do exemplo:
 
 ```
-814695b6-f44e-491b-9921-af806f5bb25c
+af6e600b-2622-40d1-89ad-d3e5b6cc2fdf
 ```
 
 Explicação: uma das propostas dos eventos não tinha nenhum proponente, por isso somente uma das propostas estavam válidas.
