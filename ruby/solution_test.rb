@@ -32,7 +32,7 @@ output_files = [
   "./../test/output/output012.txt"
 ]
 
-0..(input_files.size - 1).times do |index|
+input_files.size.times do |index|
   input_lines = File.readlines(input_files[index])
   output_lines = File.readlines(output_files[index])
 
@@ -40,8 +40,8 @@ output_files = [
   output_lines.each(&:strip!)
 
   if Solution.new.process_messages(input_lines) == output_lines.first
-    puts "Test #{index + 1}/#{input_files.length - 1} - Passed"
+    puts "Test #{index + 1}/#{input_files.length} - Passed"
   else
-    puts "Test #{index + 1}/#{input_files.length - 1} - Failed"
+    puts "Test #{index + 1}/#{input_files.length} - Failed"
   end
 end
