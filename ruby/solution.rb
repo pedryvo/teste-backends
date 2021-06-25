@@ -177,45 +177,46 @@ class Proposal
 
   ## VALIDATIONS
 
-  def is_loan_in_value_range?
+  def loan_in_value_range?
     self.loan_value.to_f.between?(30000, 3000000)
   end
 
-  def is_loan_in_time_range?
+  def loan_in_time_range?
     self.monthly_installments.to_i.between?(24, 180)
   end
 
-  def there_are_two_proponents?
+  def contains_two_proponents?
     self.proponents.size >= 2
   end
 
-  def there_is_only_one_main_proponent?
+  def has_only_one_main_proponent?
     (self.proponents.find { |proponent| proponent[:is_main] == true }).class == Hash
   end
 
-  def are_all_proponents_of_age?
+  def has_all_proponents_of_age?
     (self.proponents.select {|proponent| proponent[:age] >= 18 }).size == @proponents.size
   end
   
-  def there_is_an_warranty_property?
+  def has_an_warranty_property?
     self.warranties.any?
   end
 
-  def are_warranties_total_equal_or_bigger_than_loan?
+  def warranties_total_equal_or_bigger_than_loan?
     warranties_total = []
     self.warranties.each {|warranty| warranties_total << warranty[:value]}
     self.warranties.size > 0 ? warranties_total.reduce(:+) >= self.loan_value.to_f * 2 : false
   end
 
-  def is_main_proponent_income_valid?
+  def main_proponent_income_valid?
+    installment_price = self.loan_value.to_f / self.monthly_installments.to_i
     main_proponent = self.proponents.find { |proponent| proponent[:is_main] == true }
     unless main_proponent == nil
       if main_proponent[:age].between?(18, 24)
-        main_proponent[:monthly_income] >= self.loan_value.to_f * 4
+        main_proponent[:monthly_income] >= installment_price * 4
       elsif main_proponent[:age].between?(24,50)
-        main_proponent[:monthly_income] >= self.loan_value.to_f * 3
+        main_proponent[:monthly_income] >= installment_price * 3
       elsif main_proponent[:age] > 50
-        main_proponent[:monthly_income] >= self.loan_value.to_f * 2
+        main_proponent[:monthly_income] >= installment_price * 2
       end
     end
   end
@@ -258,7 +259,6 @@ class Solution
       # log event
       @logged_events << event  
     end
-    # binding.pry
     set_valid_proposals
     generate_output
   end
@@ -267,6 +267,7 @@ class Solution
     if action == 'created'
       @proposals << Proposal.new(args[1], args[0], args[2], args[3])
     elsif action == 'updated'
+      ### TODO: CREATE UPDATE AND DELETE PROPOSALS
       binding.pry
       proposal = @proposals.find { |proposal| proposal.id == args[1] }
       proposal.id = args[1]
@@ -278,14 +279,14 @@ class Solution
 
   def set_valid_proposals
     @proposals.each do |proposal|
-      if  proposal.is_loan_in_value_range?
-          proposal.is_loan_in_time_range?
-          proposal.there_are_two_proponents?
-          proposal.there_is_only_one_main_proponent?
-          proposal.are_all_proponents_of_age?
-          proposal.there_is_an_warranty_property?
-          proposal.are_warranties_total_equal_or_bigger_than_loan?
-          proposal.is_main_proponent_income_valid?
+      if  proposal.loan_in_value_range? &&
+          proposal.loan_in_time_range? &&
+          proposal.contains_two_proponents? &&
+          proposal.has_only_one_main_proponent? &&
+          proposal.has_all_proponents_of_age? &&
+          proposal.has_an_warranty_property? &&
+          proposal.warranties_total_equal_or_bigger_than_loan? &&
+          proposal.main_proponent_income_valid?
       
           proposal.valid = true
       else
